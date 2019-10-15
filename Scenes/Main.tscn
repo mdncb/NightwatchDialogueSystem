@@ -1,0 +1,165 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
+[ext_resource path="res://GFX/console.png" type="Texture" id=2]
+[ext_resource path="res://JohnConsole.tscn" type="PackedScene" id=3]
+[ext_resource path="res://BarryConsole.tscn" type="PackedScene" id=4]
+[ext_resource path="res://JohnClose.tscn" type="PackedScene" id=5]
+[ext_resource path="res://BarryClose.tscn" type="PackedScene" id=6]
+[ext_resource path="res://JohnPopup.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 513.672, 299.894 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "BarryConsoleFastIn"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 740, 300.007 ), Vector2( 512, 300.007 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "BarryConsoleSlowOut"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 512.006, 300.007 ), Vector2( 740, 300.007 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -120, 300.007 ), Vector2( 486, 300.007 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 500, 300.007 ), Vector2( -140, 300.007 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1176, 300.007 ), Vector2( 512, 300.007 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 515, 300.007 ), Vector2( 1200, 300.007 ) ]
+}
+
+[node name="Main" type="Control"]
+script = ExtResource( 1 )
+
+[node name="BackgroundArea" type="Area2D" parent="."]
+position = Vector2( -0.197113, -0.197075 )
+
+[node name="BackgroundSprite" type="Sprite" parent="BackgroundArea"]
+position = Vector2( 512.006, 300.007 )
+scale = Vector2( 0.266665, 0.27777 )
+texture = ExtResource( 2 )
+
+[node name="BackgroundCollision" type="CollisionShape2D" parent="BackgroundArea"]
+visible = false
+position = Vector2( 510.414, 299.073 )
+shape = SubResource( 1 )
+
+[node name="JohnConsole" parent="BackgroundArea" instance=ExtResource( 3 )]
+position = Vector2( 512.006, 300.007 )
+scale = Vector2( 0.266665, 0.27777 )
+
+[node name="BarryConsole" parent="BackgroundArea" instance=ExtResource( 4 )]
+position = Vector2( 512.006, 300.007 )
+scale = Vector2( 0.266665, 0.27777 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BackgroundArea/BarryConsole"]
+anims/BarryConsoleFastIn = SubResource( 2 )
+anims/BarryConsoleSlowOut = SubResource( 3 )
+
+[node name="JohnClose" parent="BackgroundArea" instance=ExtResource( 5 )]
+editor/display_folded = true
+position = Vector2( -120, 300.007 )
+scale = Vector2( 0.266665, 0.27777 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BackgroundArea/JohnClose"]
+anims/JohnCloseSlideIn = SubResource( 4 )
+anims/JohnCloseSlideOut = SubResource( 5 )
+
+[node name="BarryClose" parent="BackgroundArea" instance=ExtResource( 6 )]
+editor/display_folded = true
+position = Vector2( 1176, 300.007 )
+scale = Vector2( 0.266665, 0.27777 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BackgroundArea/BarryClose"]
+anims/BarryCloseSlideIn = SubResource( 6 )
+anims/BarryCloseSlideOut = SubResource( 7 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="JohnPopup" parent="CanvasLayer" instance=ExtResource( 7 )]
+[connection signal="input_event" from="BackgroundArea/JohnConsole" to="." method="_on_JohnConsole_input_event"]
+[connection signal="mouse_entered" from="BackgroundArea/JohnConsole" to="." method="_on_JohnConsole_mouse_entered"]
+[connection signal="mouse_exited" from="BackgroundArea/JohnConsole" to="." method="_on_JohnConsole_mouse_exited"]
+[connection signal="input_event" from="BackgroundArea/BarryConsole" to="." method="_on_BarryConsole_input_event"]
+[connection signal="mouse_entered" from="BackgroundArea/BarryConsole" to="." method="_on_BarryConsole_mouse_entered"]
+[connection signal="mouse_exited" from="BackgroundArea/BarryConsole" to="." method="_on_BarryConsole_mouse_exited"]
+[connection signal="button_id" from="CanvasLayer/JohnPopup" to="." method="_on_JohnPopup_button_id"]
