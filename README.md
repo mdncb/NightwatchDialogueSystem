@@ -45,7 +45,3 @@ TO DO:
 4. Copypaste a lot of code and tweak it for the Intro dialogue.
 
 5. Figure out how to script Barry's slinking away animation and returning to the console ** NOTE: Not urgent. Worry about bells and whistles like this after the rest of the game is up and running.
-
-6. Darken the background while a dialogue in on-screen.
-
-7. Prevent the dialogue from closing if the player clicks off the dialogue screen.
